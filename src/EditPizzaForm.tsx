@@ -4,9 +4,15 @@ import "./App.css";
 
 interface EditPizzaFormProps {
   data: Pizza;
+  updatePizza: (newPizza: Pizza) => void;
+  handleTogleEdit: () => void;
 }
 
-const EditPizzaForm: FC<EditPizzaFormProps> = ({ data }) => {
+const EditPizzaForm: FC<EditPizzaFormProps> = ({
+  data,
+  updatePizza,
+  handleTogleEdit,
+}) => {
   const [editPizza, setEditPizza] = useState<Pizza>(data);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +28,8 @@ const EditPizzaForm: FC<EditPizzaFormProps> = ({ data }) => {
     const { title, price, img } = editPizza;
 
     if (title && price && img) {
-      console.log(editPizza);
+      updatePizza(editPizza);
+      handleTogleEdit();
     }
   };
 

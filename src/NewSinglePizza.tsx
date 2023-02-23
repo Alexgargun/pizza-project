@@ -2,15 +2,25 @@ import React, { FC, useState } from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import EditPizzaForm from "./EditPizzaForm";
 import Pizza from "./models/pizza";
+import "./App.css";
 
 interface NewSinglePizzaProps {
   pizza: Pizza;
+  updatePizza: (newPizza: Pizza) => void;
+  deletePizza: (id: number) => void;
 }
 
-const NewSinglePizza: FC<NewSinglePizzaProps> = ({ pizza }) => {
+const NewSinglePizza: FC<NewSinglePizzaProps> = ({
+  pizza,
+  updatePizza,
+  deletePizza,
+}) => {
   const [edit, setEdit] = useState<boolean>(false);
   const handleTogleEdit = () => {
     setEdit(!edit);
+  };
+  const handleDelete = () => {
+    deletePizza(pizza.id);
   };
   return (
     <div className="pizza">
@@ -19,8 +29,14 @@ const NewSinglePizza: FC<NewSinglePizzaProps> = ({ pizza }) => {
       <span>{pizza.price}</span>
       <div className="pizza-controls">
         <AiFillEdit onClick={handleTogleEdit} />
-        <AiFillDelete />
-        {edit ? <EditPizzaForm data={pizza} /> : null}
+        <AiFillDelete onClick={handleDelete} />
+        {edit ? (
+          <EditPizzaForm
+            data={pizza}
+            updatePizza={updatePizza}
+            handleTogleEdit={handleTogleEdit}
+          />
+        ) : null}
       </div>
     </div>
   );
