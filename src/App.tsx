@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useState } from "react";
+import AdPizzaForm from "./AdPizzaForm";
+import Pizza from "./models/pizza";
+//import logo from './logo.svg';
+import "./App.css";
+import DisplayPizzas from "./DIsplayPizzas";
 
-function App() {
+const App: FC = () => {
+  const [pizzasList, setPizzasList] = useState<Pizza[]>([]);
+  const addPizza = (newPizza: Pizza) => {
+    setPizzasList([...pizzasList, newPizza]);
+  };
+  console.log(pizzasList);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="wrap">
+        <span className="heading">Our Pizzerie</span>
+        <AdPizzaForm addPizza={addPizza} />
+        <DisplayPizzas pizzasList={pizzasList} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
