@@ -1,16 +1,14 @@
-import React, { FC, useState, ChangeEvent, FormEvent } from "react";
+import { FC, useState, ChangeEvent, FormEvent } from "react";
 import Pizza from "./models/pizza";
 import "./App.css";
-
+interface AddPizzaFormProps {
+  addPizza: (newPizza: Pizza) => void;
+}
 const initState = {
   title: "",
   price: "",
   img: "",
 };
-
-interface AddPizzaFormProps {
-  addPizza: (newPizza: Pizza) => void;
-}
 
 const AdPizzaForm: FC<AddPizzaFormProps> = ({ addPizza }) => {
   const [newPizza, setNewPizza] = useState<{

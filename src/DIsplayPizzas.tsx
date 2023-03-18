@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Pizza from "./models/pizza";
 import NewSinglePizza from "./NewSinglePizza";
 

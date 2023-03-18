@@ -3,6 +3,7 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import EditPizzaForm from "./EditPizzaForm";
 import Pizza from "./models/pizza";
 import "./App.css";
+import logo from "./logo.svg";
 
 interface NewSinglePizzaProps {
   pizza: Pizza;
@@ -24,7 +25,10 @@ const NewSinglePizza: FC<NewSinglePizzaProps> = ({
   };
   return (
     <div className="pizza">
-      <img src={`/images/${pizza.img}`} alt={pizza.title} />
+      <img
+        src={process.env.PUBLIC_URL + `/images/${pizza.img}`}
+        alt={pizza.title}
+      />
       <h2>{pizza.title}</h2>
       <span>{pizza.price}</span>
       <div className="pizza-controls">
